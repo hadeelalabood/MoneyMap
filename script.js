@@ -487,23 +487,32 @@ insights.addEventListener("click", function () {
 ////////////////////dashboard/////////////////
 
 function changeCategoryPrizes() {
-  const totFoodPrice = (document.getElementById(
-    "total-food-price",
-  ).textContent = `$${totalFood("Food")}`);
-  console.log(totFoodPrice);
-  const totTransPrice = (document.getElementById(
-    "tot-trans-price",
-  ).textContent = `$${totalFood("Transport")}`);
-  const totShopPrice = (document.getElementById("tot-shop-price").textContent =
-    `$${totalFood("Shopping")}`);
-  const totBillPrice = (document.getElementById("tot-bill-price").textContent =
-    `$${totalFood("Bills")}`);
-  const totEnterPrice = (document.getElementById(
-    "tot-enter-price",
-  ).textContent = `$${totalFood("Entertainment")}`);
-  const totOtherPrice = (document.getElementById(
-    "tot-other-price",
-  ).textContent = `$${totalFood("Other")}`);
+  const arr = [
+    totalFood("Food"),
+    totalFood("Transport"),
+    totalFood("Shopping"),
+    totalFood("Bills"),
+    totalFood("Entertainment"),
+    totalFood("Other"),
+  ];
+
+  document.getElementById("total-food-price").textContent = `$${arr[0]}`;
+  document.getElementById("tot-trans-price").textContent = `$${arr[1]}`;
+  document.getElementById("tot-shop-price").textContent = `$${arr[2]}`;
+  document.getElementById("tot-bill-price").textContent = `$${arr[3]}`;
+  document.getElementById("tot-enter-price").textContent = `$${arr[4]}`;
+  document.getElementById("tot-other-price").textContent = `$${arr[5]}`;
+  //caculate top category
+  let max = arr[0];
+  let category = arr[0] > 0 ? "Food" : "No Category yet.";
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+      category = categories[i];
+    }
+  }
+  document.getElementById("top-category").innerText = category;
+  document.getElementById("top-cat-details").innerText = `$${max} this month`;
 }
 function totalFood(type) {
   let sum = 0;
@@ -514,15 +523,4 @@ function totalFood(type) {
   });
   return sum;
 }
-function topCategory() {
-  const arr = [
-    totalFood("Food"),
-    totalFood("Transport"),
-    totalFood("Shopping"),
-    totalFood("Bills"),
-    totalFood("Entertainment"),
-    totalFood("Other"),
-  ];
-  for (const top of arr) {
-  }
-}
+function topCategory() {}
