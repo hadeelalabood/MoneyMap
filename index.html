@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneyMap</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"
+    ></script>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="header">
+        <span class="logo">M</span>
+        <span class="big-info">MoneyMap</span>
+      </div>
+      <div class="sidebar-menu">
+        <ul class="sidebar-list">
+          <li id="overview" class="active">
+            <span><ion-icon class="icon" name="map-outline"></ion-icon></span>
+            <span>Overview</span>
+          </li>
+          <li id="add-expense">
+            <span><ion-icon class="icon" name="add-outline"></ion-icon></span>
+            <span>Add expense</span>
+          </li>
+          <li id="transactions">
+            <span><ion-icon class="icon" name="file-tray-full-outline"></ion-icon></ion-icon></span>
+            <span>Transactions</span>
+          </li>
+          <li id="insights">
+            <span><ion-icon class="icon" name="podium-outline"></ion-icon></span>
+            <span>Insights</span>
+          </li>
+        </ul>
+      </div>
+      <div class="canvas">
+        <div class="dashboard">
+          <h2>Good morning, Alex</h2>
+          <span class="subheading">Here’s your spending at a glance.</span>
+          <div class="dashboard-grid">
+            <div>
+              <span class="dashboard-subtitle">Total this month</span>
+              <span class="big-info" id="total-expense">
+                <!-- $1,284  -->
+              </span>
+
+              <span class="info">↓ 8% vs. last month</span>
+            </div>
+            <div>
+              <span class="dashboard-subtitle">Transactions</span>
+              <span class="big-info" id="total-transactions">24</span>
+
+              <span class="info">Across 5 categories</span>
+            </div>
+            <div>
+              <span class="dashboard-subtitle">Top category</span>
+              <span class="big-info" id="top-category">
+                <!-- Food -->
+              </span>
+
+              <span class="info">$420 this month</span>
+            </div>
+            <div class="dashboard-chart">
+              <span class="title">Spending over time</span>
+            </div>
+            <div>
+              <span class="title">By category</span>
+              <!-- <div> -->
+              <ul class="total-categories-list">
+                <li>
+                  <div>
+<span class="dot"></span>
+<span class="li"> Food </span>
+</div>
+<div><span class="tot-cat-exp"></span></div>
+</li>
+<li>
+  <div>
+                    <span class="dot"></span>
+                    
+                    <span>Transport</span>
+                  </div>
+                  
+                  <div><span class="tot-cat-exp"></span></div>
+                </li>
+                <li>
+                  <div>
+                    <span class="dot"></span>
+                    <span>Shopping</span></div>
+                    
+                  </li>
+                  <li>
+                    <div>
+                      <span class="dot"></span>
+                      <span>
+                        
+                        Bills
+                      </span></div>
+                      <div><span class="tot-cat-exp"></span></div>
+                      
+                    </li>
+                    <li>
+                      <div>
+                    <span class="dot">Entertainment</span>
+                    <span></span>
+                  </div>
+                  <div><span class="tot-cat-exp"></span></div>
+                  
+                </li>
+                <li>
+                  <div>
+                <span class="dot">Other</span>
+                <span></span>
+              </div>
+                  <div><span class="tot-cat-exp"></span></div>
+
+                </li>
+              </ul>
+              <!-- </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="expense-form hidden">
+          <form action="#" class="form" id="form">
+            <h2>Add an expense</h2>
+            <span class="subheading">a few details are all you need.</span>
+            <div >
+              <label for="amount">amount</label>
+              <div class="currency-input" >
+                <span>$</span>
+                <input
+                  type="number"
+                  name="amount"
+                  id="amount"
+                  min="0"
+                  step="0.01"
+                  placeholder="0.00"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label for="description">DESCRIPTION</label>
+              <input
+                type="text"
+                name="description"
+                id="description"
+                placeholder="e.g. Lunch with friends"
+                required
+              />
+            </div>
+            <div class="form-part">
+              <div class="strech">
+                <label for="category">CATEGORY</label>
+                <select name="category" id="category" required >
+                  <option value="" disabled selected hidden >
+                    Choose a category
+                  </option>
+                </select>
+              </div>
+              <div class="strech">
+                <label for="date">date</label>
+                <input type="date" name="date" id="date" required />
+              </div>
+            </div>
+            <div >
+              <p class="message"></p>
+              <p class="success-message"></p>
+            </div>
+            <!-- <input type="submit" name="" id="" /> -->
+            <!-- <input type="reset" name="" id="" value="Cancel" /> -->
+            <div>
+              <button class="submit-btn btn">+ Save expennse</button>
+              <button class="cancel-btn btn">Cancel</button>
+              <!-- maxlength minlength -->
+            </div>
+          </form>
+        </div>
+        <div class="transactions-list hidden">
+          <h2>Transactions</h2>
+          <span class="subheading">Your recent spending, all in one place.</span>
+          <div class="tags">
+            <div class="tag tag-active" id="all-expense-tag">All expense</div>
+            <div class="tag" id="food-tag">Food</div>
+            <div class="tag" id="transport-tag">Transport</div>
+            <div class="tag" id="shopping-tag">Shopping</div>
+            <div class="tag" id="bills-tag">Bills</div>
+            <div class="tag" id="entertainment-tag">Entertiemnt</div>
+            <div class="tag" id="other-tag">Other</div>
+            <!-- <div class="tag" id="add-new-tag">+ Add new</div> -->
+          </div>
+          <div class="tbl-container">
+            <div class="empty-list hidden">
+              <div class="empty-list-message">
+
+                <!-- <p>
+                  No Transactions yet.
+                </p> -->
+              </div>
+            </div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="hidden"></th>
+                  <th>DESCRIPTION</th>
+                  <th>CATEGORY</th>
+                  <th>DATE</th>
+                  <th>AMOUNT</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody class="tbody">
+                <tr></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="insightsO hidden"></div>
+      </div>
+    </div>
+    <div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
