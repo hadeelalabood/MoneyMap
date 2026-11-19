@@ -103,6 +103,7 @@ const setDefaultDate = function () {
 setDefaultDate();
 calculateTotalExpense();
 totalTransactions();
+changeCategoryPrizes();
 for (let i = 0; i < categories.length; i++) {
   //APPEND CATEGORIES TO DROPDOWN MENU
   let el = document.createElement("option");
@@ -148,6 +149,7 @@ document.querySelector(".submit-btn").addEventListener("click", function () {
     createTransactionsTable();
     calculateTotalExpense();
     totalTransactions();
+    changeCategoryPrizes();
     successMessage.textContent = "Transaction added succefully.";
 
     // document.querySelector(".class").reset();
@@ -404,6 +406,7 @@ function deletee(e) {
     createTransactionsTable();
     calculateTotalExpense();
     totalTransactions();
+    changeCategoryPrizes();
   }
 }
 
@@ -482,3 +485,44 @@ insights.addEventListener("click", function () {
 });
 
 ////////////////////dashboard/////////////////
+
+function changeCategoryPrizes() {
+  const totFoodPrice = (document.getElementById(
+    "total-food-price",
+  ).textContent = `$${totalFood("Food")}`);
+  console.log(totFoodPrice);
+  const totTransPrice = (document.getElementById(
+    "tot-trans-price",
+  ).textContent = `$${totalFood("Transport")}`);
+  const totShopPrice = (document.getElementById("tot-shop-price").textContent =
+    `$${totalFood("Shopping")}`);
+  const totBillPrice = (document.getElementById("tot-bill-price").textContent =
+    `$${totalFood("Bills")}`);
+  const totEnterPrice = (document.getElementById(
+    "tot-enter-price",
+  ).textContent = `$${totalFood("Entertainment")}`);
+  const totOtherPrice = (document.getElementById(
+    "tot-other-price",
+  ).textContent = `$${totalFood("Other")}`);
+}
+function totalFood(type) {
+  let sum = 0;
+  let newTrans = Transactions.filter((obj) => obj.category === type);
+
+  newTrans.forEach((obj) => {
+    sum += Number(obj["amount"]);
+  });
+  return sum;
+}
+function topCategory() {
+  const arr = [
+    totalFood("Food"),
+    totalFood("Transport"),
+    totalFood("Shopping"),
+    totalFood("Bills"),
+    totalFood("Entertainment"),
+    totalFood("Other"),
+  ];
+  for (const top of arr) {
+  }
+}
